@@ -872,10 +872,22 @@
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseLayer.h">
       <Filter>Physics\Collision\BroadPhase</Filter>
     </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseLayerInterfaceMask.h">
+      <Filter>Physics\Collision\BroadPhase</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseLayerInterfaceTable.h">
+      <Filter>Physics\Collision\BroadPhase</Filter>
+    </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseQuadTree.h">
       <Filter>Physics\Collision\BroadPhase</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseQuery.h">
+      <Filter>Physics\Collision\BroadPhase</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\ObjectVsBroadPhaseLayerFilterMask.h">
+      <Filter>Physics\Collision\BroadPhase</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\ObjectVsBroadPhaseLayerFilterTable.h">
       <Filter>Physics\Collision\BroadPhase</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\QuadTree.h">
@@ -900,6 +912,9 @@
       <Filter>Physics\Collision</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollideShape.h">
+      <Filter>Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollideSoftBodyVerticesVsTriangles.h">
       <Filter>Physics\Collision</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollideSphereVsTriangles.h">
@@ -929,6 +944,9 @@
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\GroupFilterTable.h">
       <Filter>Physics\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\InternalEdgeRemovingCollector.h">
+      <Filter>Physics\Collision</Filter>
+    </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ManifoldBetweenTwoFaces.h">
       <Filter>Physics\Collision</Filter>
     </ClInclude>
@@ -939,6 +957,12 @@
       <Filter>Physics\Collision</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ObjectLayer.h">
+      <Filter>Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ObjectLayerPairFilterMask.h">
+      <Filter>Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ObjectLayerPairFilterTable.h">
       <Filter>Physics\Collision</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\PhysicsMaterial.h">
@@ -1033,6 +1057,9 @@
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\TransformedShape.h">
       <Filter>Physics\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Constraints\CalculateSolverSteps.h">
+      <Filter>Physics\Constraints</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Constraints\ConeConstraint.h">
       <Filter>Physics\Constraints</Filter>
@@ -1166,7 +1193,13 @@
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Ragdoll\Ragdoll.h">
       <Filter>Physics\Ragdoll</Filter>
     </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyContactListener.h">
+      <Filter>Physics\SoftBody</Filter>
+    </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyCreationSettings.h">
+      <Filter>Physics\SoftBody</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyManifold.h">
       <Filter>Physics\SoftBody</Filter>
     </ClInclude>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyMotionProperties.h">

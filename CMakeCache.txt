@@ -173,6 +173,12 @@ CROSS_COMPILE_ARM:BOOL=OFF
 //Cross platform deterministic
 CROSS_PLATFORM_DETERMINISTIC:BOOL=OFF
 
+//Enable debug renderer in Distribution builds
+DEBUG_RENDERER_IN_DISTRIBUTION:BOOL=OFF
+
+//Disable support for a custom memory allocator
+DISABLE_CUSTOM_ALLOCATOR:BOOL=OFF
+
 //Use double precision math
 DOUBLE_PRECISION:BOOL=OFF
 
@@ -200,6 +206,9 @@ JoltPhysics_SOURCE_DIR:STATIC=D:/TRY_Engine/dev/Try/Libraries/Jolt/Build
 //Number of bits in ObjectLayer
 OBJECT_LAYER_BITS:BOOL=OFF
 
+//Override CMAKE_CXX_FLAGS_DEBUG/RELEASE
+OVERRIDE_CXX_FLAGS:BOOL=ON
+
 //Build Hello World
 TARGET_HELLO_WORLD:BOOL=OFF
 
@@ -214,6 +223,12 @@ TARGET_UNIT_TESTS:BOOL=OFF
 
 //Build JoltViewer
 TARGET_VIEWER:BOOL=OFF
+
+//Track Broadphase Stats
+TRACK_BROADPHASE_STATS:BOOL=OFF
+
+//Track Narrowphase Stats
+TRACK_NARROWPHASE_STATS:BOOL=OFF
 
 //Enable AVX
 USE_AVX:BOOL=ON

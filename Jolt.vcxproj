@@ -20,7 +20,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F6364144-141B-318A-87E2-802F9B56BCBD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>Jolt</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -618,6 +618,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseBruteForce.h" />
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseLayer.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseLayerInterfaceMask.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseLayerInterfaceTable.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseQuadTree.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -625,6 +627,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseQuadTree.h" />
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\BroadPhaseQuery.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\ObjectVsBroadPhaseLayerFilterMask.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\ObjectVsBroadPhaseLayerFilterTable.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\BroadPhase\QuadTree.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -653,6 +657,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollideConvexVsTriangles.h" />
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollidePointResult.h" />
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollideShape.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollideSoftBodyVerticesVsTriangles.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\CollideSphereVsTriangles.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -692,6 +697,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Distribution/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\GroupFilterTable.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\InternalEdgeRemovingCollector.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ManifoldBetweenTwoFaces.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -711,6 +717,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\NarrowPhaseStats.h" />
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ObjectLayer.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ObjectLayerPairFilterMask.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\ObjectLayerPairFilterTable.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\PhysicsMaterial.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -849,6 +857,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Distribution/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Collision\TransformedShape.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Constraints\CalculateSolverSteps.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Constraints\ConeConstraint.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -1033,12 +1042,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Distribution/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\Ragdoll\Ragdoll.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyContactListener.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyCreationSettings.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Distribution/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyCreationSettings.h" />
+    <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyManifold.h" />
     <ClInclude Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyMotionProperties.h" />
     <ClCompile Include="D:\TRY_Engine\dev\Try\Libraries\Jolt\Jolt\Physics\SoftBody\SoftBodyMotionProperties.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/TRY_Engine/dev/Try/Libraries/Jolt/CMakeFiles/Jolt.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
