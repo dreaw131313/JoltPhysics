@@ -449,7 +449,7 @@ void RagdollSettings::CalculateConstraintIndexToBodyIdxPair()
 		if (p.mToParent != nullptr)
 		{
 			int parent_joint_idx = mSkeleton->GetJoint(joint_idx).mParentJointIndex;
-			mConstraintIndexToBodyIdxPair.push_back(BodyIdxPair(parent_joint_idx, joint_idx));
+			mConstraintIndexToBodyIdxPair.emplace_back(parent_joint_idx, joint_idx);
 		}
 
 		++joint_idx;
@@ -457,7 +457,7 @@ void RagdollSettings::CalculateConstraintIndexToBodyIdxPair()
 
 	// Add additional constraints
 	for (const AdditionalConstraint &c : mAdditionalConstraints)
-		mConstraintIndexToBodyIdxPair.push_back(BodyIdxPair(c.mBodyIdx[0], c.mBodyIdx[1]));
+		mConstraintIndexToBodyIdxPair.emplace_back(c.mBodyIdx[0], c.mBodyIdx[1]);
 }
 
 Ragdoll::~Ragdoll()
@@ -552,7 +552,7 @@ void Ragdoll::SetPose(RVec3Arg inRootOffset, const Mat44 *inJointMatrices, bool 
 	for (int i = 0; i < (int)mBodyIDs.size(); ++i)
 	{
 		const Mat44 &joint = inJointMatrices[i];
-		bi.SetPositionAndRotation(mBodyIDs[i], inRootOffset + joint.GetTranslation(), joint.GetRotation().GetQuaternion(), EActivation::DontActivate);
+		bi.SetPositionAndRotation(mBodyIDs[i], inRootOffset + joint.GetTranslation(), joint.GetQuaternion(), EActivation::DontActivate);
 	}
 }
 
@@ -588,6 +588,12 @@ void Ragdoll::GetPose(RVec3 &outRootOffset, Mat44 *outJointMatrices, bool inLock
 	}
 }
 
+void Ragdoll::ResetWarmStart()
+{
+	for (TwoBodyConstraint *c : mConstraints)
+		c->ResetWarmStart();
+}
+
 void Ragdoll::DriveToPoseUsingKinematics(const SkeletonPose &inPose, float inDeltaTime, bool inLockBodies)
 {
 	JPH_ASSERT(inPose.GetSkeleton() == mRagdollSettings->mSkeleton);
@@ -602,7 +608,7 @@ void Ragdoll::DriveToPoseUsingKinematics(RVec3Arg inRootOffset, const Mat44 *inJ
 	for (int i = 0; i < (int)mBodyIDs.size(); ++i)
 	{
 		const Mat44 &joint = inJointMatrices[i];
-		bi.MoveKinematic(mBodyIDs[i], inRootOffset + joint.GetTranslation(), joint.GetRotation().GetQuaternion(), inDeltaTime);
+		bi.MoveKinematic(mBodyIDs[i], inRootOffset + joint.GetTranslation(), joint.GetQuaternion(), inDeltaTime);
 	}
 }
 

@@ -18,7 +18,7 @@ TEST_SUITE("ContactListenerTests")
 	using LogEntry = LoggingContactListener::LogEntry;
 	using EType = LoggingContactListener::EType;
 
-	// Let a sphere bounce on the floor with restition = 1
+	// Let a sphere bounce on the floor with restitution = 1
 	TEST_CASE("TestContactListenerElastic")
 	{
 		PhysicsTestContext c;
@@ -89,7 +89,7 @@ TEST_SUITE("ContactListenerTests")
 		}
 	}
 
-	// Let a sphere fall on the floor with restition = 0, then give it horizontal velocity, then take it away from the floor
+	// Let a sphere fall on the floor with restitution = 0, then give it horizontal velocity, then take it away from the floor
 	TEST_CASE("TestContactListenerInelastic")
 	{
 		PhysicsTestContext c;
@@ -517,5 +517,161 @@ TEST_SUITE("ContactListenerTests")
 						CHECK_APPROX_EQUAL(body1.GetLinearVelocity(), Vec3(v1, 0, 0));
 						CHECK_APPROX_EQUAL(body2.GetLinearVelocity(), Vec3(v2, 0, 0));
 					}
+	}
+
+	TEST_CASE("TestInfiniteMassOverride")
+	{
+		for (bool do_swap : { false, true })
+			for (EMotionQuality quality : { EMotionQuality::Discrete, EMotionQuality::LinearCast })
+			{
+				// A contact listener that makes a body have infinite mass
+				class ContactListenerImpl : public ContactListener
+				{
+				public:
+									ContactListenerImpl(const BodyID &inBodyID) : mBodyID(inBodyID) { }
+
+					virtual void	OnContactAdded(const Body &inBody1, const Body &inBody2, const ContactManifold &inManifold, ContactSettings &ioSettings) override
+					{
+						if (mBodyID == inBody1.GetID())
+						{
+							ioSettings.mInvInertiaScale1 = 0.0f;
+							ioSettings.mInvMassScale1 = 0.0f;
+						}
+						else if (mBodyID == inBody2.GetID())
+						{
+							ioSettings.mInvInertiaScale2 = 0.0f;
+							ioSettings.mInvMassScale2 = 0.0f;
+						}
+					}
+
+					virtual void	OnContactPersisted(const Body &inBody1, const Body &inBody2, const ContactManifold &inManifold, ContactSettings &ioSettings) override
+					{
+						OnContactAdded(inBody1, inBody2, inManifold, ioSettings);
+					}
+
+				private:
+					BodyID			mBodyID;
+				};
+
+				PhysicsTestContext c;
+				c.ZeroGravity();
+
+				// Create a box
+				const RVec3 cInitialBoxPos(0, 2, 0);
+				BodyCreationSettings box_settings(new BoxShape(Vec3::sReplicate(2)), cInitialBoxPos, Quat::sIdentity(), EMotionType::Dynamic, Layers::MOVING);
+				box_settings.mOverrideMassProperties = EOverrideMassProperties::CalculateInertia;
+				box_settings.mMassPropertiesOverride.mMass = 1.0f;
+
+				// Create a sphere
+				BodyCreationSettings sphere_settings(new SphereShape(2), RVec3(30, 2, 0), Quat::sIdentity(), EMotionType::Dynamic, Layers::MOVING);
+				sphere_settings.mLinearVelocity = Vec3(-100, 0, 0);
+				sphere_settings.mOverrideMassProperties = EOverrideMassProperties::CalculateInertia;
+				sphere_settings.mMassPropertiesOverride.mMass = 10.0f;
+				sphere_settings.mRestitution = 0.1f;
+				sphere_settings.mLinearDamping = 0.0f;
+				sphere_settings.mMotionQuality = quality;
+
+				BodyID box_id, sphere_id;
+				if (do_swap)
+				{
+					// Swap the bodies so that the contact listener will receive the bodies in the opposite order
+					sphere_id = c.GetBodyInterface().CreateAndAddBody(sphere_settings, EActivation::Activate);
+					box_id = c.GetBodyInterface().CreateAndAddBody(box_settings, EActivation::Activate);
+				}
+				else
+				{
+					box_id = c.GetBodyInterface().CreateAndAddBody(box_settings, EActivation::Activate);
+					sphere_id = c.GetBodyInterface().CreateAndAddBody(sphere_settings, EActivation::Activate);
+				}
+
+				// Add listener that will make the box have infinite mass
+				ContactListenerImpl listener(box_id);
+				c.GetSystem()->SetContactListener(&listener);
+
+				// Simulate
+				const float cSimulationTime = 0.3f;
+				c.Simulate(cSimulationTime);
+
+				// Check that the box didn't move
+				BodyInterface &bi = c.GetBodyInterface();
+				CHECK(bi.GetPosition(box_id) == cInitialBoxPos);
+				CHECK(bi.GetLinearVelocity(box_id) == Vec3::sZero());
+				CHECK(bi.GetAngularVelocity(box_id) == Vec3::sZero());
+
+				// Check that the sphere bounced off the box
+				CHECK_APPROX_EQUAL(bi.GetLinearVelocity(sphere_id), -sphere_settings.mLinearVelocity * sphere_settings.mRestitution);
+			}
+		}
+
+	TEST_CASE("TestCollideKinematicVsNonDynamic")
+	{
+		for (EMotionType m1 = EMotionType::Static; m1 <= EMotionType::Dynamic; m1 = EMotionType((int)m1 + 1))
+			for (int allow1 = 0; allow1 < 2; ++allow1)
+				for (int active1 = 0; active1 < 2; ++active1)
+					for (EMotionType m2 = EMotionType::Static; m2 <= EMotionType::Dynamic; m2 = EMotionType((int)m2 + 1))
+						for (int allow2 = 0; allow2 < 2; ++allow2)
+							for (int active2 = 0; active2 < 2; ++active2)
+								if ((m1 != EMotionType::Static && active1) || (m2 != EMotionType::Static && active2))
+								{
+									PhysicsTestContext c;
+									c.ZeroGravity();
+
+									const Vec3 cInitialVelocity1(m1 != EMotionType::Static && active1 != 0? 1.0f : 0.0f, 0, 0);
+									const Vec3 cInitialVelocity2(m2 != EMotionType::Static && active2 != 0? -1.0f : 0.0f, 0, 0);
+
+									// Create two spheres that are colliding initially
+									BodyCreationSettings bcs(new SphereShape(1.0f), RVec3::sZero(), Quat::sIdentity(), m1, m1 != EMotionType::Static? Layers::MOVING : Layers::NON_MOVING);
+									bcs.mPosition = RVec3(-0.5_r, 0, 0);
+									bcs.mLinearVelocity = cInitialVelocity1;
+									bcs.mCollideKinematicVsNonDynamic = allow1 != 0;
+									Body &body1 = *c.GetBodyInterface().CreateBody(bcs);
+									c.GetBodyInterface().AddBody(body1.GetID(), active1 != 0? EActivation::Activate : EActivation::DontActivate);
+
+									bcs.mMotionType = m2;
+									bcs.mObjectLayer = m2 != EMotionType::Static? Layers::MOVING : Layers::NON_MOVING;
+									bcs.mPosition = RVec3(0.5_r, 0, 0);
+									bcs.mLinearVelocity = cInitialVelocity2;
+									bcs.mCollideKinematicVsNonDynamic = allow2 != 0;
+									Body &body2 = *c.GetBodyInterface().CreateBody(bcs);
+									c.GetBodyInterface().AddBody(body2.GetID(), active2 != 0? EActivation::Activate : EActivation::DontActivate);
+
+									// Set listener
+									LoggingContactListener listener;
+									c.GetSystem()->SetContactListener(&listener);
+
+									// Step
+									c.SimulateSingleStep();
+
+									if ((allow1 || allow2) // In this case we always get a callback
+										|| (m1 == EMotionType::Dynamic || m2 == EMotionType::Dynamic)) // Otherwise we only get a callback when one of the bodies is dynamic
+									{
+										// Check that we received a callback
+										CHECK(listener.GetEntryCount() == 2);
+										CHECK(listener.Contains(EType::Validate, body1.GetID(), body2.GetID()));
+										CHECK(listener.Contains(EType::Add, body1.GetID(), body2.GetID()));
+									}
+									else
+									{
+										// No collision events should have been received
+										CHECK(listener.GetEntryCount() == 0);
+									}
+
+									// Velocities should only change if the body is dynamic
+									if (m1 == EMotionType::Dynamic)
+									{
+										CHECK(body1.GetLinearVelocity() != cInitialVelocity1);
+										CHECK(body1.IsActive());
+									}
+									else
+										CHECK(body1.GetLinearVelocity() == cInitialVelocity1);
+
+									if (m2 == EMotionType::Dynamic)
+									{
+										CHECK(body2.GetLinearVelocity() != cInitialVelocity2);
+										CHECK(body2.IsActive());
+									}
+									else
+										CHECK(body2.GetLinearVelocity() == cInitialVelocity2);
+								}
 	}
 }
